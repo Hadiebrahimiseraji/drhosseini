@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Menu,
   X,
@@ -14,8 +14,6 @@ import {
   ShieldCheck,
   Sparkles,
   Stethoscope,
-  Trash2,
-  Search,
 } from "lucide-react";
 import PortfolioCarousel from "./PortfolioCarousel.jsx";
 
@@ -95,11 +93,6 @@ export default function FaezehClinic() {
   const [activeTab, setActiveTab] = useState("all");
   const [scrolled, setScrolled] = useState(false);
 
-  // Booking + Admin panel state
-  const [appointments, setAppointments] = useState([]);
-  const [showAdmin, setShowAdmin] = useState(false);
-  const [adminQuery, setAdminQuery] = useState("");
-
   // Booking form state
   const [form, setForm] = useState({
     fullName: "",
@@ -110,13 +103,7 @@ export default function FaezehClinic() {
     note: "",
   });
 
-  // تصاویر Local (از public/)
-  const images = {
-    hero: "/filer2.png",
-    about: "/kantor2.png",
-    interior: "/filer4.png",
-  };
-
+  
   const services = [
     {
       title: "فیلر و ژل (صورت و لب)",
@@ -165,17 +152,6 @@ export default function FaezehClinic() {
     activeTab === "all"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeTab);
-
-  const adminFiltered = useMemo(() => {
-    const query = adminQuery.trim().toLowerCase();
-    if (!query) return appointments;
-    return appointments.filter((appt) => {
-      const haystack = `${appt.fullName} ${appt.phone} ${appt.service} ${
-        appt.note ?? ""
-      } ${appt.preferredDate ?? ""} ${appt.preferredTime ?? ""}`.toLowerCase();
-      return haystack.includes(query);
-    });
-  }, [adminQuery, appointments]);
 
   const onChange = (key) => (event) =>
     setForm((prev) => ({ ...prev, [key]: event.target.value }));
@@ -243,18 +219,6 @@ export default function FaezehClinic() {
       preferredTime: "",
       note: "",
     });
-
-    setShowAdmin(true);
-  };
-
-  const removeAppointment = (id) => {
-    if (!confirm("این نوبت حذف شود؟")) return;
-    setAppointments((prev) => prev.filter((appt) => appt.id !== id));
-  };
-
-  const clearAll = () => {
-    if (!confirm("همه نوبت‌ها پاک شود؟")) return;
-    setAppointments([]);
   };
 
   const toggleMenu = () => setIsMenuOpen((state) => !state);
@@ -413,16 +377,11 @@ export default function FaezehClinic() {
       {/* Hero */}
       <section
         id="home"
-        className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+        className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-white via-amber-50/30 to-amber-100/20"
       >
-        <div className="absolute inset-0 z-0">
-          <img
-            src={images.hero}
-            alt="فیلر و بوتاکس در بابل - دکتر فائزه حسینی"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-100/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
@@ -529,13 +488,10 @@ export default function FaezehClinic() {
               </div>
             </div>
 
-            <div className="mt-6 overflow-hidden rounded-3xl shadow-xl">
-              <img
-                src={images.interior}
-                alt="فضای خدمات - بابل"
-                className="w-full h-72 object-cover"
-                loading="lazy"
-              />
+            <div className="mt-6 p-6 bg-amber-50 border border-amber-200 rounded-2xl">
+              <p className="text-sm text-amber-900 text-center font-medium">
+                ✨ نمونه‌کارهای بیشتر را در بخش پورتفوليو مشاهده کنید
+              </p>
             </div>
           </div>
         </div>
@@ -543,44 +499,39 @@ export default function FaezehClinic() {
 
       {/* About */}
       <section id="about" className="py-20 bg-white">
-        <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               درباره دکتر فائزه حسینی
             </h2>
-            <p className="text-gray-600 leading-8">
-              با تمرکز بر زیبایی طبیعی و ایمنی، خدمات تخصصی در زمینه فیلر، بوتاکس،
-              جوانسازی با نخ و کانتورینگ تخصصی صورت و لب ارائه می‌شود. هر مراجعه
-              با مشاوره دقیق آغاز شده و مسیر درمان متناسب با نیاز شما طراحی
-              می‌گردد.
+            <p className="text-lg text-gray-600 leading-8">
+              با تمرکز بر زیبایی طبیعی و ایمنی، خدمات تخصصی در زمینه فیلر، بوتاکس، جوانسازی
+              با نخ و کانتورینگ تخصصی صورت و لب ارائه می‌شود. هر مشاوره با درک دقیق از نیازهای شما آغاز
+              شده و مسیر درمان کاملاً متناسب طراحی می‌گردد.
             </p>
-            <div className="mt-6 grid sm:grid-cols-2 gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-xl p-3">
-                <CheckCircle size={18} className="text-amber-500" />
-                تمرکز بر نتیجه طبیعی
-              </div>
-              <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-xl p-3">
-                <ShieldCheck size={18} className="text-amber-500" />
-                پروتکل‌های ایمن و استاندارد
-              </div>
-              <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-xl p-3">
-                <Sparkles size={18} className="text-amber-500" />
-                طراحی درمان اختصاصی
-              </div>
-              <div className="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-xl p-3">
-                <MessageCircle size={18} className="text-amber-500" />
-                مشاوره سریع در واتس‌اپ
-              </div>
-            </div>
           </div>
-
-          <div className="rounded-3xl overflow-hidden shadow-xl">
-            <img
-              src={images.about}
-              alt="کلینیک زیبایی دکتر فائزه حسینی در بابل"
-              className="w-full h-80 object-cover"
-              loading="lazy"
-            />
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+              <div className="text-3xl mb-3">✨</div>
+              <h3 className="font-bold text-gray-900 mb-2">نتیجه طبیعی</h3>
+              <p className="text-sm text-gray-600">طراحی هارمونیک و منطبق با ویژگی‌های چهره شما</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+              <div className="text-3xl mb-3">🛡️</div>
+              <h3 className="font-bold text-gray-900 mb-2">ایمنی اول</h3>
+              <p className="text-sm text-gray-600">رعایت کامل استانداردهای طب جمیل بین‌المللی</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 border border-purple-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+              <div className="text-3xl mb-3">🎯</div>
+              <h3 className="font-bold text-gray-900 mb-2">مشاوره دقیق</h3>
+              <p className="text-sm text-gray-600">درک عمیق از خواسته‌ها و انتظارات هر فرد</p>
+            </div>
+            <div className="bg-gradient-to-br from-green-50 to-green-100/50 border border-green-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+              <div className="text-3xl mb-3">💬</div>
+              <h3 className="font-bold text-gray-900 mb-2">پیگیری مداوم</h3>
+              <p className="text-sm text-gray-600">پشتیبانی پس از خدمات و نکات مراقبتی</p>
+            </div>
           </div>
         </div>
       </section>
@@ -631,21 +582,17 @@ export default function FaezehClinic() {
         </div>
       </section>
 
-      {/* Booking + Admin */}
-      <section id="booking" className="py-20 bg-gray-50">
+      {/* Booking */}
+      <section id="booking" className="py-20 bg-gradient-to-br from-gray-50 to-amber-50/30">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
-            <div className="w-full lg:w-1/2 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-              <div className="flex items-center justify-between gap-3 mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">فرم رزرو نوبت</h3>
-                <button
-                  onClick={() => setShowAdmin((state) => !state)}
-                  className="text-sm flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition px-4 py-2 rounded-full"
-                  title="نمایش پنل"
-                >
-                  <ShieldCheck size={16} />
-                  پنل نوبت‌ها
-                </button>
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">رزرو نوبت آنلاین</h2>
+              <p className="text-gray-600">فرم را تکمیل کنید و بلافاصله پیام آماده در واتس‌اپ دریافت کنید</p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-amber-100">
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-gray-900">اطلاعات شما</h3>
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
@@ -746,132 +693,6 @@ export default function FaezehClinic() {
               <p className="text-xs text-center text-gray-400 mt-4">
                 پس از ثبت، واتس‌اپ با متن آماده باز می‌شود تا برای پزشک ارسال کنید.
               </p>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    پنل نوبت‌های ثبت‌شده
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={clearAll}
-                      className="text-sm flex items-center gap-2 bg-red-50 text-red-700 border border-red-100 hover:bg-red-100 transition px-4 py-2 rounded-full"
-                      title="پاک کردن همه"
-                    >
-                      <Trash2 size={16} />
-                      پاک کردن
-                    </button>
-                    <button
-                      onClick={() => setShowAdmin((state) => !state)}
-                      className="text-sm flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition px-4 py-2 rounded-full"
-                    >
-                      {showAdmin ? "بستن" : "نمایش"}
-                    </button>
-                  </div>
-                </div>
-
-                {!showAdmin ? (
-                  <div className="mt-6 bg-gray-50 border border-gray-100 rounded-2xl p-6 text-gray-600">
-                    برای مشاهده نوبت‌ها، روی «نمایش» کلیک کنید.
-                  </div>
-                ) : (
-                  <>
-                    <div className="mt-6 flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3">
-                      <Search size={18} className="text-gray-400" />
-                      <input
-                        value={adminQuery}
-                        onChange={(event) => setAdminQuery(event.target.value)}
-                        className="w-full bg-transparent outline-none text-gray-700"
-                        placeholder="جستجو (نام/شماره/خدمت...)"
-                      />
-                    </div>
-
-                    <div className="mt-6 space-y-4">
-                      {adminFiltered.length === 0 ? (
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-gray-600">
-                          هنوز نوبتی ثبت نشده است.
-                        </div>
-                      ) : (
-                        adminFiltered.map((appt) => {
-                          const waText = buildWhatsAppMessage(appt);
-                          return (
-                            <div
-                              key={appt.id}
-                              className="border border-gray-100 rounded-2xl p-5 hover:shadow-md transition"
-                            >
-                              <div className="flex items-start justify-between gap-4">
-                                <div>
-                                  <p className="font-bold text-gray-900">
-                                    {appt.fullName}{" "}
-                                    <span className="text-xs text-gray-400 mr-2">
-                                      ({appt.id.slice(0, 8)})
-                                    </span>
-                                  </p>
-                                  <p className="text-sm text-gray-600 mt-1 ltr" dir="ltr">
-                                    {appt.phone}
-                                  </p>
-                                  <div className="mt-2 flex flex-wrap gap-2">
-                                    <span className="text-xs bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded-full">
-                                      {appt.service}
-                                    </span>
-                                    {appt.preferredDate ? (
-                                      <span className="text-xs bg-gray-50 text-gray-700 border border-gray-100 px-3 py-1 rounded-full">
-                                        📅 {appt.preferredDate}
-                                      </span>
-                                    ) : null}
-                                    {appt.preferredTime ? (
-                                      <span className="text-xs bg-gray-50 text-gray-700 border border-gray-100 px-3 py-1 rounded-full">
-                                        ⏰ {appt.preferredTime}
-                                      </span>
-                                    ) : null}
-                                  </div>
-
-                                  {appt.note ? (
-                                    <p className="text-sm text-gray-600 mt-3 leading-7">
-                                      <span className="font-bold">توضیحات:</span> {appt.note}
-                                    </p>
-                                  ) : null}
-
-                                  <p className="text-xs text-gray-400 mt-3">
-                                    ثبت شده در: {formatFaDateTime(appt.createdAt)}
-                                  </p>
-                                </div>
-
-                                <div className="flex flex-col gap-2 min-w-[140px]">
-                                  <a
-                                    href={`${WHATSAPP_LINK}?text=${waText}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2.5 rounded-xl hover:bg-green-700 transition"
-                                  >
-                                    <MessageCircle size={16} />
-                                    ارسال
-                                  </a>
-
-                                  <button
-                                    onClick={() => removeAppointment(appt.id)}
-                                    className="text-sm flex items-center justify-center gap-2 bg-red-50 text-red-700 border border-red-100 px-4 py-2.5 rounded-xl hover:bg-red-100 transition"
-                                  >
-                                    <Trash2 size={16} />
-                                    حذف
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })
-                      )}
-                    </div>
-
-                    <div className="mt-6 text-xs text-gray-400 leading-6">
-                      این پنل در همین مرورگر ذخیره می‌شود (LocalStorage). برای پنل واقعی
-                      و چندکاربره، بک‌اند لازم است.
-                    </div>
-                  </>
-                )}
-              </div>
             </div>
           </div>
         </div>

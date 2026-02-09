@@ -41,8 +41,8 @@ export default function PortfolioCarousel({ items = [], instagram, city = "" }) 
     <div className="portfolio">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-1">نمونه‌کارها (فیلر / کانتورینگ)</h2>
-          <p className="text-gray-600">تصاویر از فایل‌های داخل ریپو</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-1">نمونه‌کارهای تخصصی</h2>
+          <p className="text-gray-600">بهترین نتایج فیلر و کانتورینگ | گالری کاملاً واقعی</p>
         </div>
 
         <div className="flex flex-wrap gap-2 bg-gray-100 p-1 rounded-xl">

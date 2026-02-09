@@ -17,6 +17,7 @@ import {
   Trash2,
   Search,
 } from "lucide-react";
+import PortfolioCarousel from "./PortfolioCarousel.jsx";
 
 /**
  * کلینیک زیبایی دکتر فائزه حسینی — نسخه GitHub Pages
@@ -426,10 +427,6 @@ export default function FaezehClinic() {
 
         <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <span className="inline-block px-4 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-bold tracking-wide">
-              {BRAND} • {CITY}
-            </span>
-
             <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
               {SLOGAN}
               <br />
@@ -630,75 +627,7 @@ export default function FaezehClinic() {
       {/* Gallery */}
       <section id="gallery" className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                نمونه‌کارها (فیلر / کانتورینگ)
-              </h2>
-              <p className="text-gray-600">
-                تصاویر از فایل‌های خود شما در ریپو (filer و kantor)
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2 bg-gray-100 p-1 rounded-xl">
-              {[
-                { id: "all", label: "همه" },
-                { id: "filer", label: "فیلر" },
-                { id: "kantor", label: "کانتورینگ" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    activeTab === tab.id
-                      ? "bg-white text-amber-600 shadow-sm"
-                      : "text-gray-500 hover:text-gray-800"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {filteredGallery.map((item) => (
-              <div
-                key={item.id}
-                className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer"
-                title={item.title}
-              >
-                <img
-                  src={item.image}
-                  alt={`${item.title} - ${CITY}`}
-                  className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                  <div>
-                    <span className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1 block">
-                      نمونه کار
-                    </span>
-                    <h4 className="text-white text-lg font-bold">
-                      {item.title}
-                    </h4>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <a
-              href={INSTAGRAM_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-amber-600 border border-gray-300 hover:border-amber-600 px-6 py-3 rounded-xl transition"
-            >
-              <Instagram size={20} />
-              مشاهده نمونه‌کارهای بیشتر در اینستاگرام
-            </a>
-          </div>
+          <PortfolioCarousel items={galleryItems} instagram={INSTAGRAM_LINK} city={CITY} />
         </div>
       </section>
 

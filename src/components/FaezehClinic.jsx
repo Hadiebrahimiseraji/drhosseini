@@ -103,6 +103,9 @@ export default function FaezehClinic() {
     note: "",
   });
 
+  // Appointments state
+  const [appointments, setAppointments] = useState([]);
+
   
   const services = [
     {
@@ -139,13 +142,13 @@ export default function FaezehClinic() {
 
   // گالری از فایل‌های خودت
   const galleryItems = [
-    { id: 1, category: "filer", image: "/filer1.png", title: "فیلر — نمونه ۱" },
-    { id: 2, category: "filer", image: "/filer2.png", title: "فیلر — نمونه ۲" },
-    { id: 3, category: "filer", image: "/filer3.png", title: "فیلر — نمونه ۳" },
-    { id: 4, category: "filer", image: "/filer4.png", title: "فیلر — نمونه ۴" },
-    { id: 5, category: "kantor", image: "/kantor1.png", title: "کانتورینگ — نمونه ۱" },
-    { id: 6, category: "kantor", image: "/kantor2.png", title: "کانتورینگ — نمونه ۲" },
-    { id: 7, category: "kantor", image: "/kantor3.png", title: "کانتورینگ — نمونه ۳" },
+    { id: 1, category: "filer", image: `${import.meta.env.BASE_URL}filer1.png`, title: "فیلر — نمونه ۱" },
+    { id: 2, category: "filer", image: `${import.meta.env.BASE_URL}filer2.png`, title: "فیلر — نمونه ۲" },
+    { id: 3, category: "filer", image: `${import.meta.env.BASE_URL}filer3.png`, title: "فیلر — نمونه ۳" },
+    { id: 4, category: "filer", image: `${import.meta.env.BASE_URL}filer4.png`, title: "فیلر — نمونه ۴" },
+    { id: 5, category: "kantor", image: `${import.meta.env.BASE_URL}kantor1.png`, title: "کانتورینگ — نمونه ۱" },
+    { id: 6, category: "kantor", image: `${import.meta.env.BASE_URL}kantor2.png`, title: "کانتورینگ — نمونه ۲" },
+    { id: 7, category: "kantor", image: `${import.meta.env.BASE_URL}kantor3.png`, title: "کانتورینگ — نمونه ۳" },
   ];
 
   const filteredGallery =

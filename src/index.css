@@ -1,21 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root{
-  --bg-100: #fffdf9;
-  --bg-200: #fff7f2;
-  --accent-gold: #c9a35b;
+  --bg-100: #fefefe;
+  --bg-200: #f8f6f4;
+  --accent-gold: #d4af37;
+  --accent-pink: #e91e63;
+  --accent-rose: #f06292;
   --wa-green: #25D366;
-  --title: #1b1f2a;
-  --muted: #6b7280;
-  --radius-lg: 18px;
-  --card-shadow: 0 6px 18px rgba(27,31,42,0.06);
+  --title: #2d3748;
+  --muted: #718096;
+  --radius-lg: 20px;
+  --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  --gradient-bg: linear-gradient(135deg, #fefefe 0%, #f8f6f4 100%);
 }
 
 body {
-  background: linear-gradient(180deg,var(--bg-100),var(--bg-200));
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--gradient-bg);
   color: var(--title);
+  line-height: 1.6;
 }
 
 /* Soft card style */

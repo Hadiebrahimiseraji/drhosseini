@@ -23,6 +23,7 @@ import PortfolioCarousel from "./PortfolioCarousel.jsx";
  * - ارسال رزرو به واتس‌اپ (بدون بک‌اند)
  * - تصاویر Local از public (filer/kantor)
  * - SEO + Schema.org
+ * - آخرین بروزرسانی: February 2026
  */
 
 const STORAGE_KEY = "faezeh_clinic_appointments_v2";

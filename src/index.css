@@ -10,12 +10,15 @@
   --accent-gold: #d4af37;
   --accent-pink: #e91e63;
   --accent-rose: #f06292;
+  --accent-lavender: #ba68c8;
   --wa-green: #25D366;
   --title: #2d3748;
   --muted: #718096;
   --radius-lg: 20px;
   --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
   --gradient-bg: linear-gradient(135deg, #fefefe 0%, #f8f6f4 100%);
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
 }
 
 body {
@@ -31,6 +34,16 @@ body {
   border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   border: 1px solid rgba(16,24,40,0.04);
+}
+
+/* Glass effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
 }
 
 /* Scroll reveal */

@@ -503,7 +503,7 @@ export default function FaezehClinic() {
       {/* About */}
       <section id="about" className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="glass p-8 mb-12 max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               درباره دکتر فائزه حسینی
             </h2>
@@ -515,22 +515,22 @@ export default function FaezehClinic() {
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+            <div className="glass p-6 text-center hover:shadow-lg transition">
               <div className="text-3xl mb-3">✨</div>
               <h3 className="font-bold text-gray-900 mb-2">نتیجه طبیعی</h3>
               <p className="text-sm text-gray-600">طراحی هارمونیک و منطبق با ویژگی‌های چهره شما</p>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+            <div className="glass p-6 text-center hover:shadow-lg transition">
               <div className="text-3xl mb-3">🛡️</div>
               <h3 className="font-bold text-gray-900 mb-2">ایمنی اول</h3>
               <p className="text-sm text-gray-600">رعایت کامل استانداردهای طب جمیل بین‌المللی</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 border border-purple-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+            <div className="glass p-6 text-center hover:shadow-lg transition">
               <div className="text-3xl mb-3">🎯</div>
               <h3 className="font-bold text-gray-900 mb-2">مشاوره دقیق</h3>
               <p className="text-sm text-gray-600">درک عمیق از خواسته‌ها و انتظارات هر فرد</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100/50 border border-green-200 rounded-2xl p-6 text-center hover:shadow-lg transition">
+            <div className="glass p-6 text-center hover:shadow-lg transition">
               <div className="text-3xl mb-3">💬</div>
               <h3 className="font-bold text-gray-900 mb-2">پیگیری مداوم</h3>
               <p className="text-sm text-gray-600">پشتیبانی پس از خدمات و نکات مراقبتی</p>
@@ -542,7 +542,7 @@ export default function FaezehClinic() {
       {/* Services */}
       <section id="services" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="glass text-center max-w-3xl mx-auto mb-16 p-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               خدمات تخصصی
             </h2>
@@ -555,9 +555,9 @@ export default function FaezehClinic() {
             {services.map((service, idx) => (
               <div
                 key={idx}
-                className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 group"
+                className="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 group"
               >
-                <div className="text-4xl mb-6 bg-amber-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-amber-600 transition duration-300 group-hover:scale-110">
+                <div className="text-4xl mb-6 bg-pink-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition duration-300 group-hover:scale-110">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -568,7 +568,7 @@ export default function FaezehClinic() {
                 </p>
                 <a
                   href="#booking"
-                  className="inline-flex items-center text-amber-600 font-medium hover:gap-2 transition-all"
+                  className="inline-flex items-center text-pink-600 font-medium hover:gap-2 transition-all"
                 >
                   رزرو این خدمت <ArrowLeft size={16} className="mr-1" />
                 </a>
@@ -589,11 +589,11 @@ export default function FaezehClinic() {
       <section id="booking" className="py-20 bg-gradient-to-br from-gray-50 to-amber-50/30">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="glass text-center mb-12 p-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">رزرو نوبت آنلاین</h2>
               <p className="text-gray-600">فرم را تکمیل کنید و بلافاصله پیام آماده در واتس‌اپ دریافت کنید</p>
             </div>
-            <div className="bg-white rounded-3xl p-8 shadow-lg border border-amber-100">
+            <div className="glass p-8 shadow-lg">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">اطلاعات شما</h3>
               </div>
@@ -708,7 +708,7 @@ export default function FaezehClinic() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
-              <div>
+              <div className="glass p-8">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">راه‌های ارتباط</h2>
                 <p className="text-gray-400 leading-relaxed">
                   برای هماهنگی نوبت، فرم رزرو را تکمیل کنید یا مستقیم در واتس‌اپ پیام

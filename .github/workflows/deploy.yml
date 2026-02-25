@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main", "codex/setup-github-pages-for-react-project"]
+    branches: ["codex/setup-github-pages-for-react-project"]
   workflow_dispatch: {}
 
 permissions:
